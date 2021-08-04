@@ -1,0 +1,28 @@
+---
+- hosts: docker
+  tasks:
+    - name: Stop a container
+      community.docker.docker_container:
+        name: myapp
+        state: stopped
+      ignore_errors: yes
+
+    - name: Remove container from all networks
+      community.docker.docker_container:
+        name: myapp
+        purge_networks: yes
+      ignore_errors: yes
+
+    - name: Remove image
+      community.docker.docker_image:
+        state: absent
+        force_absent: yes
+        name: sourabhmiraje/project_4
+        tag: latest
+      ignore_errors: yes
+
+    - name: Start a container with a command
+      community.docker.docker_container:
+        name: myapp
+        image: sourabhmiraje/project_4
+        ports: 8090:8080

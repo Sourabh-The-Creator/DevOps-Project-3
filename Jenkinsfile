@@ -10,7 +10,6 @@ pipeline {
             steps {
                 // Get some code from a GitHub repository
                 git 'https://github.com/Sourabh-The-Creator/hello-world.git'
-
                 sh "mvn clean install package"
 
             }
